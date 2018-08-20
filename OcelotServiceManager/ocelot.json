@@ -1,0 +1,41 @@
+﻿{
+  "ReRoutes": [
+    {
+      "UpstreamPathTemplate": "/api/user",
+      "UpstreamHttpMethod": [ "Get" ],
+      "DownstreamPathTemplate": "/api/user",
+      "DownstreamScheme": "http",
+      "downstreamhostandports": [
+        {
+          "host": "localhost",
+          "port": 6022
+        }
+      ],
+      "ServiceName": "ApiService"
+    },
+    {
+      "UpstreamPathTemplate": "/api/Product",
+      "UpstreamHttpMethod": [ "Get" ],
+      "DownstreamPathTemplate": "/api/Product",
+      "DownstreamScheme": "http",
+      "downstreamhostandports": [
+        {
+          "host": "localhost",
+          "port": 6011
+        },
+        {
+          "host": "localhost",
+          "port": 6012
+        }
+      ],
+      "LoadBalancerOptions": {
+        "Type": "LeastConnection"
+      },
+      "ServiceName": "ApiService"
+      //"UseServiceDiscovery": true
+    }
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "http://localhost:6000"
+  }
+}
